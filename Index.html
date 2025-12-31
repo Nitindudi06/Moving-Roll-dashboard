@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Roll | Fleet Dashboard</title>
+
+<style>
+/* ===============================
+   THEME VARIABLES
+================================ */
+:root{
+  --bg:#0b0f14;
+  --panel:#111822;
+  --border:#1f2a38;
+  --text:#e6e6e6;
+  --muted:#9aa4b2;
+  --neon:#1aff64;
+  --red:#ff3b3b;
+  --blue:#66a3ff;
+  --yellow:#ffcc00;
+}
+
+/* ===============================
+   GLOBAL RESET
+================================ */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ===============================
+   HEADER
+================================ */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:#0d131c;
+  border-bottom:1px solid var(--border);
+}
+
+.logo{
+  font-size:20px;
+  font-weight:700;
+  color:var(--neon);
+  letter-spacing:1px;
+}
+
+.transporter{
+  font-size:14px;
+  color:var(--muted);
+}
+
+.sos{
+  background:var(--red);
+  padding:8px 14px;
+  border-radius:6px;
+  font-weight:700;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1;}
+  51%,100%{opacity:0.4;}
+}
+
+/* ===============================
+   LAYOUT
+================================ */
+.container{
+  padding:14px;
+}
+
+/* ===============================
+   CARDS
+================================ */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px;
+}
+
+.card h3{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.card .value{
+  font-size:26px;
+  font-weight:700;
+}
+
+/* Metric Colors */
+.metric-success{border-left:5px solid var(--neon);}
+.metric-danger{border-left:5px solid var(--red);}
+.metric-info{border-left:5px solid var(--blue);}
+.metric-warning{border-left:5px solid var(--yellow);}
+
+.metric-success .value{color:var(--neon);}
+.metric-danger .value{color:#ff8080;}
+.metric-info .value{color:var(--blue);}
+.metric-warning .value{color:var(--yellow);}
+
+/* ===============================
+   ACTION BUTTON
+================================ */
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:16px;
+}
+
+.smart-btn{
+  background:var(--neon);
+  color:#000;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.smart-btn:active{
+  transform:scale(0.98);
+}
+
+/* ===============================
+   TABLE
+================================ */
+.table-wrap{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+thead{
+  background:#0e1622;
+}
+
+th,td{
+  padding:10px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  color:var(--muted);
+}
+
+.status-loaded{color:var(--neon);font-weight:600;}
+.status-empty{color:var(--yellow);font-weight:600;}
+.status-mine{color:var(--blue);font-weight:600;}
+
+/* ===============================
+   RESPONSIVE (10-inch Tablet)
+================================ */
+@media(min-width:768px){
+  .cards{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===============================
+     HEADER
+================================ -->
+<div class="header">
+  <div class="logo">MOVING ROLL</div>
+  <div class="transporter">Transporter: XYZ Logistics</div>
+  <div class="sos">LIVE SOS</div>
+</div>
+
+<div class="container">
+
+  <!-- ===============================
+       OPERATION METRICS
+  ================================ -->
+  <div class="cards">
+    <div class="card metric-info">
+      <h3>Total Fleet</h3>
+      <div class="value">50</div>
+    </div>
+
+    <div class="card metric-success">
+      <h3>Active Trucks (On-Road)</h3>
+      <div class="value">32</div>
+    </div>
+
+    <div class="card metric-warning">
+      <h3>Emptying in Next 4 Hrs</h3>
+      <div class="value">7</div>
+    </div>
+
+    <div class="card metric-success">
+      <h3>Today's Revenue</h3>
+      <div class="value">₹ 2,45,000</div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       FINANCIAL METRICS
+  ================================ -->
+  <div class="cards">
+    <div class="card metric-danger">
+      <h3>Total Diesel Cost</h3>
+      <div class="value">₹ 1,20,000</div>
+    </div>
+
+    <div class="card metric-success">
+      <h3>Total Net Profit</h3>
+      <div class="value">₹ 85,000</div>
+    </div>
+
+    <div class="card metric-info">
+      <h3>Efficiency Rate</h3>
+      <div class="value">72% <span style="font-size:13px;color:var(--muted);">Fleet Avg</span></div>
+    </div>
+  </div>
+
+  <!-- ===============================
+       SMART MATCHING
+  ================================ -->
+  <div class="actions">
+    <button class="smart-btn">SMART MATCHING</button>
+  </div>
+
+  <!-- ===============================
+       LIVE FLEET TABLE
+  ================================ -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Truck No</th>
+          <th>Current Location</th>
+          <th>Driver Contact</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RJ14-GA-2345</td>
+          <td>Hanumangarh Mine</td>
+          <td>9XXXXXXXXX</td>
+          <td class="status-mine">At Mine</td>
+        </tr>
+        <tr>
+          <td>RJ07-BC-8890</td>
+          <td>Bikaner Highway</td>
+          <td>9XXXXXXXXX</td>
+          <td class="status-loaded">Loaded</td>
+        </tr>
+        <tr>
+          <td>RJ31-TK-1122</td>
+          <td>Churu</td>
+          <td>9XXXXXXXXX</td>
+          <td class="status-empty">Empty</td>
+        </tr>
+        <tr>
+          <td>RJ22-LP-7788</td>
+          <td>Sri Ganganagar</td>
+          <td>9XXXXXXXXX</td>
+          <td class="status-loaded">Loaded</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>
+	◦	
